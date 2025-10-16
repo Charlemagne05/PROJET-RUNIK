@@ -72,13 +72,6 @@ CREATE TABLE livraison (
 ) ENGINE=InnoDB;
 
 
-CREATE OR REPLACE VIEW classement_ventes AS
-SELECT p.id_produit, p.nom_produit, SUM(dc.quantite) AS total_vendu
-FROM detail_commande dc
-JOIN produit p ON p.id_produit = dc.id_produit
-GROUP BY p.id_produit, p.nom_produit
-ORDER BY total_vendu DESC;
-
 
 DELIMITER $$
 CREATE TRIGGER trg_after_insert_detail
